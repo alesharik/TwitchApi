@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Auth Failed</title>
+    <style>
+        main {
+            width: 100%;
+            text-align: center;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+    <script type="text/javascript">
+        window.addEventListener("load", function () {
+            var response = {
+                error: "",
+                description: ""
+            };
+            if (document.location.search.length > 0) {
+                var query = document.location.search;
+                var params = query.slice(1).split('&');
+                for (var i = 0; i < params.length; i++) {
+                    var param = params[i].split('=');
+                    if (param[0] === "error")
+                        response.error = param[1];
+                    else if (param[0] === "error_description")
+                        response.description = param[1].replace(/\+/g, ' ');
+                }
+                document.querySelector("#error").innerHTML = response.error;
+                document.querySelector("e#rror-description").innerHTML = response.description;
+            }
+        });
+    </script>
+</head>
+<body>
+<main>
+    <h2 id="header">Authorization</h2>
+    <div class="error">
+        <p id="error">Access Denied</p>
+        <p id="error-description">Access token not found.</p>
+    </div>
+</main>
+</body>
+</html>

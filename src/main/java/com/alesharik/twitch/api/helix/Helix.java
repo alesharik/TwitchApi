@@ -22,14 +22,21 @@ import com.alesharik.twitch.api.helix.api.Streams;
 import com.alesharik.twitch.api.helix.api.Users;
 import com.alesharik.twitch.api.helix.api.Videos;
 
+import javax.annotation.Nonnull;
+
 public interface Helix {
+    @Nonnull
     Clips getClips();
 
+    @Nonnull
     Games getGames();
 
+    @Nonnull
     Streams getStreams();
 
+    @Nonnull
     Users getUsers();
 
+    @Nonnull
     Videos getVideos();
 }

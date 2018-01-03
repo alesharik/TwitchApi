@@ -16,8 +16,10 @@
 
 package com.alesharik.twitch.api.helix;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 public interface PaginatedList extends List {
+    @Nonnull
     String getCursor();
 }

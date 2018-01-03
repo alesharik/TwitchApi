@@ -18,14 +18,20 @@ package com.alesharik.twitch.api.helix.api;
 
 import com.alesharik.twitch.api.helix.entity.Stream;
 
-public interface Clips<Clip, EditClip, ClipList> {
-    Clip getClip(String id);
+import javax.annotation.Nonnull;
 
+public interface Clips<Clip, EditClip> {
+    @Nonnull
+    Clip getClip(@Nonnull String id);
+
+    @Nonnull
     EditClip createClip();
 
-    EditClip createClip(String broadcasterId);
+    @Nonnull
+    EditClip createClip(@Nonnull String broadcasterId);
 
-    default EditClip createClip(Stream stream) {
+    @Nonnull
+    default EditClip createClip(@Nonnull Stream stream) {
         return createClip(stream.getId());
     }
 }

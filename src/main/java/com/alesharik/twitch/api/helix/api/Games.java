@@ -16,35 +16,48 @@
 
 package com.alesharik.twitch.api.helix.api;
 
+import javax.annotation.Nonnegative;
+import javax.annotation.Nonnull;
+
 /**
  *
- * @param <E> element type
  * @param <GameList> list element type
  */
-public interface Games<Game, GameList> {
+public interface Games<GameList> {
+    @Nonnull
     GetGames<GameList> get();
 
+    @Nonnull
     GetTopGames<GameList> getTop();
 
     interface GetGames<GameList> {
-        GetGames<GameList> addId(String id);
+        @Nonnull
+        GetGames<GameList> addId(@Nonnull String id);
 
-        GetGames<GameList> addIds(String... ids);
+        @Nonnull
+        GetGames<GameList> addIds(@Nonnull String... ids);
 
-        GetGames<GameList> addName(String name);
+        @Nonnull
+        GetGames<GameList> addName(@Nonnull String name);
 
-        GetGames<GameList> addNames(String... names);
+        @Nonnull
+        GetGames<GameList> addNames(@Nonnull String... names);
 
+        @Nonnull
         GameList get();
     }
 
     interface GetTopGames<GameList> {
-        GetTopGames<GameList> after(String cursor);
+        @Nonnull
+        GetTopGames<GameList> after(@Nonnull String cursor);
 
-        GetTopGames<GameList> before(String cursor);
+        @Nonnull
+        GetTopGames<GameList> before(@Nonnull String cursor);
 
-        GetTopGames<GameList> count(int count);
+        @Nonnull
+        GetTopGames<GameList> count(@Nonnegative int count);
 
+        @Nonnull
         GameList get();
     }
 }

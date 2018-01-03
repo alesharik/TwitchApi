@@ -19,75 +19,101 @@ package com.alesharik.twitch.api.helix.api;
 import com.alesharik.twitch.api.helix.entity.Game;
 import com.alesharik.twitch.api.helix.entity.User;
 
+import javax.annotation.Nonnegative;
+import javax.annotation.Nonnull;
+
 import static com.alesharik.twitch.api.helix.entity.Stream.*;
 
 public interface Streams<StreamMeta, StreamPaginatedList> {
+    @Nonnull
     GetStreams<StreamPaginatedList> get();
 
+    @Nonnull
     GetStreams<StreamMeta> getMeta();
 
     interface GetStreams<StreamList> {
-        GetStreams<StreamList> after(String cursor);
+        @Nonnull
+        GetStreams<StreamList> after(@Nonnull String cursor);
 
-        GetStreams<StreamList> before(String cursor);
+        @Nonnull
+        GetStreams<StreamList> before(@Nonnull String cursor);
 
-        GetStreams<StreamList> addCommunityId(String id);
+        @Nonnull
+        GetStreams<StreamList> addCommunityId(@Nonnull String id);
 
-        GetStreams<StreamList> addCommunityIds(String... id);
+        @Nonnull
+        GetStreams<StreamList> addCommunityIds(@Nonnull String... id);
 
-        GetStreams<StreamList> count(int count);
+        @Nonnull
+        GetStreams<StreamList> count(@Nonnegative int count);
 
-        GetStreams<StreamList> addGame(String gameId);
+        @Nonnull
+        GetStreams<StreamList> addGame(@Nonnull String gameId);
 
-        default GetStreams<StreamList> addGame(Game game) {
+        @Nonnull
+        default GetStreams<StreamList> addGame(@Nonnull Game game) {
             return addGame(game.getId());
         }
 
-        GetStreams<StreamList> addGames(String... gameId);
+        @Nonnull
+        GetStreams<StreamList> addGames(@Nonnull String... gameId);
 
-        default GetStreams<StreamList> addGames(Game... game) {
+        @Nonnull
+        default GetStreams<StreamList> addGames(@Nonnull Game... game) {
             String[] strings = new String[game.length];
             for(int i = 0; i < game.length; i++)
                 strings[i] = game[i].getId();
             return addGames(strings);
         }
 
-        GetStreams<StreamList> addLanguage(String lang);
+        @Nonnull
+        GetStreams<StreamList> addLanguage(@Nonnull String lang);
 
-        GetStreams<StreamList> addLanguages(String... lang);
+        @Nonnull
+        GetStreams<StreamList> addLanguages(@Nonnull String... lang);
 
-        GetStreams<StreamList> type(Type type);
+        @Nonnull
+        GetStreams<StreamList> type(@Nonnull Type type);
 
-        GetStreams<StreamList> addUserId(String id);
+        @Nonnull
+        GetStreams<StreamList> addUserId(@Nonnull String id);
 
-        GetStreams<StreamList> addUserIds(String... id);
+        @Nonnull
+        GetStreams<StreamList> addUserIds(@Nonnull String... id);
 
-        default GetStreams<StreamList> addUser(User user) {
+        @Nonnull
+        default GetStreams<StreamList> addUser(@Nonnull User user) {
             return addUserId(user.getId());
         }
 
-        default GetStreams<StreamList> addUsers(User... users) {
+        @Nonnull
+        default GetStreams<StreamList> addUsers(@Nonnull User... users) {
             String[] strings = new String[users.length];
             for(int i = 0; i < users.length; i++)
                 strings[i] = users[i].getId();
             return addUserIds(strings);
         }
 
-        GetStreams<StreamList> addUserLogin(String id);
+        @Nonnull
+        GetStreams<StreamList> addUserLogin(@Nonnull String id);
 
-        GetStreams<StreamList> addUserLogins(String... id);
+        @Nonnull
+        GetStreams<StreamList> addUserLogins(@Nonnull String... id);
 
-        default GetStreams<StreamList> addUserLogin(User user) {
+        @Nonnull
+        default GetStreams<StreamList> addUserLogin(@Nonnull User user) {
             return addUserLogin(user.getLogin());
         }
 
-        default GetStreams<StreamList> addUserLogins(User... users) {
+        @Nonnull
+        default GetStreams<StreamList> addUserLogins(@Nonnull User... users) {
             String[] strings = new String[users.length];
             for(int i = 0; i < users.length; i++)
                 strings[i] = users[i].getLogin();
             return addUserLogins(strings);
         }
 
+        @Nonnull
         StreamList get();
     }
 }

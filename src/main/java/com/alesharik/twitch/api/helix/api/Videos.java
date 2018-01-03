@@ -19,37 +19,51 @@ package com.alesharik.twitch.api.helix.api;
 import com.alesharik.twitch.api.helix.entity.Game;
 import com.alesharik.twitch.api.helix.entity.User;
 
+import javax.annotation.Nonnegative;
+import javax.annotation.Nonnull;
+
 public interface Videos<PaginatedVideoList> {
-    GetVideos<PaginatedVideoList> getByIds(String... ids);
+    @Nonnull
+    GetVideos<PaginatedVideoList> getByIds(@Nonnull String... ids);
 
-    GetVideos<PaginatedVideoList> getFromUser(User user);
+    @Nonnull
+    GetVideos<PaginatedVideoList> getFromUser(@Nonnull User user);
 
-    GetVideos<PaginatedVideoList> getForGame(Game game);
+    @Nonnull
+    GetVideos<PaginatedVideoList> getForGame(@Nonnull Game game);
 
     interface GetVideos<VideoList> {
-        GetVideos<VideoList> after(String cursor);
+        @Nonnull
+        GetVideos<VideoList> after(@Nonnull String cursor);
 
-        GetVideos<VideoList> before(String cursor);
+        @Nonnull
+        GetVideos<VideoList> before(@Nonnull String cursor);
 
-        GetVideos<VideoList> count(int count);
+        @Nonnull
+        GetVideos<VideoList> count(@Nonnegative int count);
 
-        GetVideos<VideoList> language(String lang);
+        @Nonnull
+        GetVideos<VideoList> language(@Nonnull String lang);
 
         /**
          * Period during which the video was created. Valid values: "all", "day", "month", and "week". Default: "all".
          */
-        GetVideos<VideoList> period(String period);
+        @Nonnull
+        GetVideos<VideoList> period(@Nonnull String period);
 
         /**
          * Sort order of the videos. Valid values: "time", "trending", and "views". Default: "time".
          */
-        GetVideos<VideoList> sort(String sort);
+        @Nonnull
+        GetVideos<VideoList> sort(@Nonnull String sort);
 
         /**
          * Type of video. Valid values: "all", "upload", "archive", and "highlight". Default: "all".
          */
-        GetVideos<VideoList> type(String type);
+        @Nonnull
+        GetVideos<VideoList> type(@Nonnull String type);
 
+        @Nonnull
         VideoList get();
     }
 }

@@ -16,34 +16,49 @@
 
 package com.alesharik.twitch.api.helix.api;
 
+import javax.annotation.Nonnegative;
+import javax.annotation.Nonnull;
+
 public interface Users<UserList, UserFollows, User> {
+    @Nonnull
     GetUsers<UserList> get();
 
-    GetFollows<UserFollows> getFollowsFrom(User from);
+    @Nonnull
+    GetFollows<UserFollows> getFollowsFrom(@Nonnull User from);
 
-    GetFollows<UserFollows> getFollowsTo(User to);
+    @Nonnull
+    GetFollows<UserFollows> getFollowsTo(@Nonnull User to);
 
     User updateDescription(String newDescription);
 
     interface GetUsers<UserList> {
-        GetUsers<UserList> addId(String id);
+        @Nonnull
+        GetUsers<UserList> addId(@Nonnull String id);
 
-        GetUsers<UserList> addIds(String... id);
+        @Nonnull
+        GetUsers<UserList> addIds(@Nonnull String... id);
 
-        GetUsers<UserList> addLogin(String login);
+        @Nonnull
+        GetUsers<UserList> addLogin(@Nonnull String login);
 
-        GetUsers<UserList> addLogins(String... logins);
+        @Nonnull
+        GetUsers<UserList> addLogins(@Nonnull String... logins);
 
+        @Nonnull
         UserList get();
     }
 
     interface GetFollows<UserFollows> {
-        GetFollows<UserFollows> after(String cursor);
+        @Nonnull
+        GetFollows<UserFollows> after(@Nonnull String cursor);
 
-        GetFollows<UserFollows> before(String cursor);
+        @Nonnull
+        GetFollows<UserFollows> before(@Nonnull String cursor);
 
-        GetFollows<UserFollows> count(int count);
+        @Nonnull
+        GetFollows<UserFollows> count(@Nonnegative int count);
 
+        @Nonnull
         UserFollows get();
     }
 }

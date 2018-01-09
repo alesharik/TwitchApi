@@ -24,7 +24,7 @@ public abstract class AbstractVideos<PaginatedVideoList> implements Videos<Pagin
     protected abstract static class AbstractGetVideos<VideoList> implements GetVideos<VideoList> {
         protected String after;
         protected String before;
-        protected int count;
+        protected int count = 20;
         protected String language;
         protected String period;
         protected String sort;
@@ -47,6 +47,8 @@ public abstract class AbstractVideos<PaginatedVideoList> implements Videos<Pagin
         @Nonnull
         @Override
         public GetVideos<VideoList> count(int count) {
+            if(count > 100)
+                throw new IllegalArgumentException("Can't request more than 100 entries!");
             this.count = count;
             return this;
         }

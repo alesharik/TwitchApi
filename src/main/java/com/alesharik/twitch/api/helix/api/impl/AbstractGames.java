@@ -87,6 +87,8 @@ public abstract class AbstractGames<GameList> implements Games<GameList> {
         @Nonnull
         @Override
         public Games.GetTopGames<GameList> count(int count) {
+            if(count > 100)
+                throw new IllegalArgumentException("Can't request more than 100 entries!");
             this.count = count;
             return this;
         }

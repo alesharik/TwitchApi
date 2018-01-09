@@ -31,6 +31,8 @@ public abstract class AbstractUsers<UserList, UserFollows, User> implements User
         @Nonnull
         @Override
         public GetUsers<UserList> addId(@Nonnull String id) {
+            if(this.ids.size() > 100)
+                throw new IllegalArgumentException("Can't request more than 100 user ids!");
             ids.add(id);
             return this;
         }
@@ -38,6 +40,8 @@ public abstract class AbstractUsers<UserList, UserFollows, User> implements User
         @Nonnull
         @Override
         public GetUsers<UserList> addIds(@Nonnull String... id) {
+            if(this.ids.size() + id.length > 100)
+                throw new IllegalArgumentException("Can't request more than 100 user ids!");
             ids.addAll(Arrays.asList(id));
             return this;
         }
@@ -45,6 +49,8 @@ public abstract class AbstractUsers<UserList, UserFollows, User> implements User
         @Nonnull
         @Override
         public GetUsers<UserList> addLogin(@Nonnull String login) {
+            if(this.logins.size() > 100)
+                throw new IllegalArgumentException("Can't request more than 100 user logins!");
             logins.add(login);
             return this;
         }
@@ -52,6 +58,8 @@ public abstract class AbstractUsers<UserList, UserFollows, User> implements User
         @Nonnull
         @Override
         public GetUsers<UserList> addLogins(@Nonnull String... logins) {
+            if(this.logins.size() + logins.length > 100)
+                throw new IllegalArgumentException("Can't request more than 100 user logins!");
             this.logins.addAll(Arrays.asList(logins));
             return this;
         }
@@ -60,7 +68,7 @@ public abstract class AbstractUsers<UserList, UserFollows, User> implements User
     protected abstract static class AbstractGetFollows<UserFollows> implements GetFollows<UserFollows> {
         protected String after;
         protected String before;
-        protected int count;
+        protected int count = 20;
 
         @Nonnull
         @Override
@@ -79,6 +87,8 @@ public abstract class AbstractUsers<UserList, UserFollows, User> implements User
         @Nonnull
         @Override
         public GetFollows<UserFollows> count(int count) {
+            if(count > 100)
+                throw new IllegalArgumentException("Can't request more than 100 entries!");
             this.count = count;
             return this;
         }

@@ -24,12 +24,12 @@ import javax.annotation.Nonnull;
 
 import static com.alesharik.twitch.api.helix.entity.Stream.*;
 
-public interface Streams<StreamMeta, StreamPaginatedList> {
+public interface Streams<StreamMetaPaginatedList, StreamPaginatedList> {
     @Nonnull
     GetStreams<StreamPaginatedList> get();
 
     @Nonnull
-    GetStreams<StreamMeta> getMeta();
+    GetStreams<StreamMetaPaginatedList> getMeta();
 
     interface GetStreams<StreamList> {
         @Nonnull

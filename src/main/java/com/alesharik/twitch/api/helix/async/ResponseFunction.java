@@ -14,12 +14,11 @@
  *    limitations under the License.
  */
 
-package com.alesharik.twitch.api.helix;
+package com.alesharik.twitch.api.helix.async;
 
-import javax.annotation.Nullable;
-import java.util.List;
+import java.io.IOException;
 
-public interface PaginatedList<E> extends List<E> {
-    @Nullable
-    String getCursor();
+@FunctionalInterface
+public interface ResponseFunction<T, R> {
+    R apply(T t) throws IOException;
 }

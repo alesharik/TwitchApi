@@ -28,7 +28,7 @@ import java.util.List;
 @EqualsAndHashCode
 @ToString
 @RequiredArgsConstructor
-public final class UserFolllowsPart {
+public final class UserFollowsPart {
     @SerializedName("pagination")
     private final Pagination pagination;
     @Getter

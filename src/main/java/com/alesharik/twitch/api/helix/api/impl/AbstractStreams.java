@@ -32,7 +32,7 @@ public abstract class AbstractStreams<StreamMetaPaginatedList, StreamPaginatedLi
         protected int count = 20;
         protected final List<String> games = new ArrayList<>();
         protected final List<String> languages = new ArrayList<>();
-        protected Stream.Type type;
+        protected Stream.Type type = Stream.Type.ALL;
         protected final List<String> userIds = new ArrayList<>();
         protected final List<String> userNames = new ArrayList<>();
         

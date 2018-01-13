@@ -16,10 +16,14 @@
 
 package com.alesharik.twitch.api;
 
+import com.alesharik.twitch.api.helix.PaginatedArrayList;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
 
 public final class GsonUtils {
-    public static final Gson GSON = new Gson();
+    public static final Gson GSON = new GsonBuilder()
+            .registerTypeAdapterFactory(new PaginatedArrayList.JsonAdapterFactory())
+            .create();
     public static final JsonParser JSON_PARSER = new JsonParser();
 }

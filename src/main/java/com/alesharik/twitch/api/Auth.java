@@ -16,6 +16,8 @@
 
 package com.alesharik.twitch.api;
 
+import okhttp3.Request;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
@@ -25,4 +27,10 @@ public interface Auth {
 
     @Nullable
     String getToken();
+
+    default void fillRequestHeaders(Request.Builder request) {
+        if(getToken() != null)
+            request.addHeader("Authorization", "Bearer " + getToken());
+        request.addHeader("Client-ID", getClientId());
+    }
 }

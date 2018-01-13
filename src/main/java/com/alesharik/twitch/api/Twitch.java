@@ -18,7 +18,7 @@ package com.alesharik.twitch.api;
 
 import com.alesharik.twitch.api.auth.Authenticator;
 import com.alesharik.twitch.api.auth.Scope;
-import com.alesharik.twitch.api.helix.async.Helix;
+import com.alesharik.twitch.api.helix.async.HelixAsync;
 import lombok.Getter;
 import lombok.Setter;
 import okhttp3.OkHttpClient;
@@ -32,6 +32,7 @@ import java.net.URI;
 public class Twitch {
     protected final String clientId;
     protected final OkHttpClient client;
+    protected final HelixAsync async;
 
     @Setter
     @Getter
@@ -40,6 +41,7 @@ public class Twitch {
     public Twitch(String clientId) {
         this.clientId = clientId;
         this.client = new OkHttpClient();
+        this.async = new HelixAsync(client, new AuthImpl());
     }
 
     /**
@@ -61,8 +63,9 @@ public class Twitch {
         }, clientId, port, callback.toASCIIString(), scopes);
     }
 
-    public Helix getHelix() {
-        return new Helix(client, new AuthImpl());
+    @Nonnull
+    public HelixAsync async() {
+        return async;
     }
 
     private final class AuthImpl implements Auth {

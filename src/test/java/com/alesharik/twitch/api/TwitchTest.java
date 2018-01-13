@@ -26,7 +26,21 @@ public class TwitchTest {
     public void authTest() throws Exception {
         Twitch twitch = new Twitch("ub00uwkym079kr09g8h8oac426ifns");
         twitch.authorizeClient(new URI("http://127.0.0.1:23522/authorize.html"), 23522, Scope.EDIT_USER);
-        twitch.getHelix().getTopGames(System.out::println);
+        twitch.async()
+                .getGames()
+                .getTop()
+                .count(100)
+                .get()
+                .then(games -> games.forEach(game -> {
+                    twitch.async()
+                            .getVideos()
+                            .getForGame(game)
+                            .count(100)
+                            .get()
+                            .then(System.out::print)
+                            .execute();
+                }))
+                .execute();
         Thread.sleep(10000);
     }
 }

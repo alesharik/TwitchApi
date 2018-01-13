@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class AbstractGames<GameList> implements Games<GameList> {
+public abstract class AbstractGames<GameList, GamePaginatedList> implements Games<GameList, GamePaginatedList> {
     protected static abstract class AbstractGetGames<GameList> implements GetGames<GameList> {
         protected final List<String> ids = new ArrayList<>();
         protected final List<String> names = new ArrayList<>();
@@ -65,7 +65,7 @@ public abstract class AbstractGames<GameList> implements Games<GameList> {
         }
     }
 
-    protected static abstract class GetTopGames<GameList> implements Games.GetTopGames<GameList> {
+    protected static abstract class AbstractGetTopGames<GameList> implements Games.GetTopGames<GameList> {
         protected String after = "";
         protected String before = "";
         protected int count = 20;

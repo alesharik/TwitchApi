@@ -14,8 +14,11 @@
  *    limitations under the License.
  */
 
-package com.alesharik.twitch.api.helix.api.impl;
+package com.alesharik.twitch.api.helix.async;
 
-import com.alesharik.twitch.api.helix.api.Clips;
+import java.io.IOException;
 
-public abstract class AbstaractClips<Clip, EditClip> implements Clips<Clip, EditClip> { }
+@FunctionalInterface
+public interface ResponseConsumer<T> {
+    void accept(T t) throws IOException;
+}

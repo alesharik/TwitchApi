@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class AbstractUsers<UserList, UserFollows, User> implements Users<UserList, UserFollows, User> {
+public abstract class AbstractUsers<UserList, UserFollows, User, UserReturn> implements Users<UserList, UserFollows, User, UserReturn> {
     protected static abstract class AbstractGetUsers<UserList> implements GetUsers<UserList> {
         protected final List<String> ids = new ArrayList<>();
         protected final List<String> logins = new ArrayList<>();

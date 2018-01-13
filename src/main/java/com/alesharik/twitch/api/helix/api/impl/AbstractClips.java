@@ -14,12 +14,8 @@
  *    limitations under the License.
  */
 
-package com.alesharik.twitch.api.helix;
+package com.alesharik.twitch.api.helix.api.impl;
 
-import javax.annotation.Nullable;
-import java.util.List;
+import com.alesharik.twitch.api.helix.api.Clips;
 
-public interface PaginatedList<E> extends List<E> {
-    @Nullable
-    String getCursor();
-}
+public abstract class AbstractClips<Clip, EditClip> implements Clips<Clip, EditClip> { }

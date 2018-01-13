@@ -23,12 +23,12 @@ import javax.annotation.Nonnull;
  *
  * @param <GameList> list element type
  */
-public interface Games<GameList> {
+public interface Games<GameList, GamePaginatedList> {
     @Nonnull
     GetGames<GameList> get();
 
     @Nonnull
-    GetTopGames<GameList> getTop();
+    GetTopGames<GamePaginatedList> getTop();
 
     interface GetGames<GameList> {
         @Nonnull

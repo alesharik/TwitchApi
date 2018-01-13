@@ -14,12 +14,24 @@
  *    limitations under the License.
  */
 
-package com.alesharik.twitch.api.helix;
+package com.alesharik.twitch.api;
 
-import javax.annotation.Nullable;
+import lombok.experimental.UtilityClass;
+
+import javax.annotation.Nonnull;
+import java.util.Iterator;
 import java.util.List;
 
-public interface PaginatedList<E> extends List<E> {
-    @Nullable
-    String getCursor();
+@UtilityClass
+public class Utils {
+    public static String serializeList(@Nonnull List<String> list) {
+        StringBuilder names = new StringBuilder();
+        Iterator<String> iterator = list.iterator();
+        while(iterator.hasNext()) {
+            names.append(iterator.next());
+            if(iterator.hasNext())
+                names.append(',');
+        }
+        return names.toString();
+    }
 }

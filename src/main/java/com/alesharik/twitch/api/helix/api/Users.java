@@ -19,7 +19,7 @@ package com.alesharik.twitch.api.helix.api;
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 
-public interface Users<UserList, UserFollows, User> {
+public interface Users<UserList, UserFollows, User, UserReturn> {
     @Nonnull
     GetUsers<UserList> get();
 
@@ -29,7 +29,7 @@ public interface Users<UserList, UserFollows, User> {
     @Nonnull
     GetFollows<UserFollows> getFollowsTo(@Nonnull User to);
 
-    User updateDescription(String newDescription);
+    UserReturn updateDescription(String newDescription);
 
     interface GetUsers<UserList> {
         @Nonnull

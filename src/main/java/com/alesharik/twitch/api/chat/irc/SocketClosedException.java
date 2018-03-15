@@ -14,18 +14,12 @@
  *    limitations under the License.
  */
 
-package com.alesharik.twitch.api.auth;
+package com.alesharik.twitch.api.chat.irc;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import com.alesharik.twitch.api.chat.TwitchChatException;
 
-@RequiredArgsConstructor
-public enum Scope {
-    EDIT_CLIPS("clips:edit"),
-    EDIT_USER("user:edit"),
-    READ_USER_EMAIL("user:read:email"),
-    CHAT("chat_login");
-
-    @Getter
-    private final String name;
+public final class SocketClosedException extends TwitchChatException {
+    public SocketClosedException() {
+        super("Socket closed");
+    }
 }

@@ -14,18 +14,21 @@
  *    limitations under the License.
  */
 
-package com.alesharik.twitch.api.auth;
+package com.alesharik.twitch.api.chat.irc;
 
+import com.alesharik.twitch.api.chat.TwitchChatException;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
-public enum Scope {
-    EDIT_CLIPS("clips:edit"),
-    EDIT_USER("user:edit"),
-    READ_USER_EMAIL("user:read:email"),
-    CHAT("chat_login");
+@Getter
+@EqualsAndHashCode(callSuper = true)
+public final class IRCListenerException extends TwitchChatException {
+    private final IRCMessage ircMessage;
+    private final IRCChannel.Listener listener;
 
-    @Getter
-    private final String name;
+    public IRCListenerException(Throwable cause, IRCMessage message, IRCChannel.Listener listener) {
+        super("Exception in listener " + listener + " while processing message " + message, cause);
+        this.ircMessage = message;
+        this.listener = listener;
+    }
 }

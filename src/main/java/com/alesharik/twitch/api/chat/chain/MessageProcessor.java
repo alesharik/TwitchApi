@@ -14,18 +14,11 @@
  *    limitations under the License.
  */
 
-package com.alesharik.twitch.api.auth;
+package com.alesharik.twitch.api.chat.chain;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import com.alesharik.twitch.api.chat.Channel;
+import com.alesharik.twitch.api.chat.Message;
 
-@RequiredArgsConstructor
-public enum Scope {
-    EDIT_CLIPS("clips:edit"),
-    EDIT_USER("user:edit"),
-    READ_USER_EMAIL("user:read:email"),
-    CHAT("chat_login");
-
-    @Getter
-    private final String name;
+public interface MessageProcessor {
+    Message process(Message message, Channel channel);
 }

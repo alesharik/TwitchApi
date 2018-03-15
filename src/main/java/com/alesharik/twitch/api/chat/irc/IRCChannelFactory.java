@@ -14,18 +14,15 @@
  *    limitations under the License.
  */
 
-package com.alesharik.twitch.api.auth;
+package com.alesharik.twitch.api.chat.irc;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import javax.annotation.Nonnegative;
+import javax.annotation.Nonnull;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.util.concurrent.ExecutorService;
+import java.util.function.Consumer;
 
-@RequiredArgsConstructor
-public enum Scope {
-    EDIT_CLIPS("clips:edit"),
-    EDIT_USER("user:edit"),
-    READ_USER_EMAIL("user:read:email"),
-    CHAT("chat_login");
-
-    @Getter
-    private final String name;
+public interface IRCChannelFactory {
+    IRCChannel create(@Nonnull InetAddress host, @Nonnegative int port, @Nonnull Consumer<Runnable> starter, @Nonnull ExecutorService executorService) throws IOException;
 }

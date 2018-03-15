@@ -14,18 +14,31 @@
  *    limitations under the License.
  */
 
-package com.alesharik.twitch.api.auth;
+package com.alesharik.twitch.api.chat.message;
 
-import lombok.Getter;
+import com.alesharik.twitch.api.chat.Message;
+import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 @RequiredArgsConstructor
-public enum Scope {
-    EDIT_CLIPS("clips:edit"),
-    EDIT_USER("user:edit"),
-    READ_USER_EMAIL("user:read:email"),
-    CHAT("chat_login");
+@EqualsAndHashCode
+@ToString
+public final class NickMessage implements Message {
+    private final String nick;
 
-    @Getter
-    private final String name;
+    @Override
+    public String toIRCString() {
+        return "NICK " + nick;
+    }
+
+    @Override
+    public String getType() {
+        return "NICK";
+    }
+
+    @Override
+    public Direction getUseDirection() {
+        return Direction.TO_SERVER;
+    }
 }

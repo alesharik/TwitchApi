@@ -14,18 +14,10 @@
  *    limitations under the License.
  */
 
-package com.alesharik.twitch.api.auth;
+package com.alesharik.twitch.api.chat.irc;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+public interface IRCMessageFactory<M extends IRCMessage> {
+    M newMessage(String msgLine);
 
-@RequiredArgsConstructor
-public enum Scope {
-    EDIT_CLIPS("clips:edit"),
-    EDIT_USER("user:edit"),
-    READ_USER_EMAIL("user:read:email"),
-    CHAT("chat_login");
-
-    @Getter
-    private final String name;
+    String getType();
 }

@@ -14,18 +14,23 @@
  *    limitations under the License.
  */
 
-package com.alesharik.twitch.api.auth;
+package com.alesharik.twitch.api.chat;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import com.alesharik.twitch.api.TwitchException;
 
-@RequiredArgsConstructor
-public enum Scope {
-    EDIT_CLIPS("clips:edit"),
-    EDIT_USER("user:edit"),
-    READ_USER_EMAIL("user:read:email"),
-    CHAT("chat_login");
+public class TwitchChatException extends TwitchException {
+    public TwitchChatException() {
+    }
 
-    @Getter
-    private final String name;
+    public TwitchChatException(String message) {
+        super(message);
+    }
+
+    public TwitchChatException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public TwitchChatException(Throwable cause) {
+        super(cause);
+    }
 }

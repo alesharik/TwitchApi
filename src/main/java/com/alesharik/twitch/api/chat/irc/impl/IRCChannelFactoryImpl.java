@@ -28,6 +28,7 @@ import lombok.AllArgsConstructor;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
+import javax.net.ssl.SSLSocketFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -43,8 +44,12 @@ import java.util.concurrent.ExecutorService;
 import java.util.function.Consumer;
 
 public final class IRCChannelFactoryImpl implements IRCChannelFactory {
-    public IRCChannelImpl create(@Nonnull InetAddress host, @Nonnegative int port, @Nonnull Consumer<Runnable> starter, @Nonnull ExecutorService executorService) throws IOException {
-        Socket socket = new Socket(host, port);
+    public IRCChannelImpl create(@Nonnull InetAddress host, @Nonnegative int port, boolean secure, @Nonnull Consumer<Runnable> starter, @Nonnull ExecutorService executorService) throws IOException {
+        Socket socket;
+        if(secure)
+            socket = SSLSocketFactory.getDefault().createSocket(host, port);
+        else
+            socket = new Socket(host, port);
         IRCChannelImpl channel = new IRCChannelImpl(socket, executorService);
         starter.accept(channel);
         return channel;

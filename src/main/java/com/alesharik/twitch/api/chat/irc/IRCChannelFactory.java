@@ -24,5 +24,5 @@ import java.util.concurrent.ExecutorService;
 import java.util.function.Consumer;
 
 public interface IRCChannelFactory {
-    IRCChannel create(@Nonnull InetAddress host, @Nonnegative int port, @Nonnull Consumer<Runnable> starter, @Nonnull ExecutorService executorService) throws IOException;
+    IRCChannel create(@Nonnull InetAddress host, @Nonnegative int port, boolean secure, @Nonnull Consumer<Runnable> starter, @Nonnull ExecutorService executorService) throws IOException;
 }

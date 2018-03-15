@@ -55,7 +55,7 @@ public final class ChatEngineImpl implements ChatEngine {
     @Override
     public Channel newChannel(Type type, String nick) {
         try {
-            IRCChannel irc = ircChannelFactory.create(type.getHost(), type.getPort(), runnable -> {
+            IRCChannel irc = ircChannelFactory.create(type.getHost(), type.getPort(), type == Type.SECURE, runnable -> {
                 Thread thread = new Thread(ircThreadGroup, runnable, "IRCThread" + ircThreadCounter.getAndIncrement());
                 thread.setDaemon(true);
                 thread.start();

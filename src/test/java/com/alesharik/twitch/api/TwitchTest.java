@@ -22,6 +22,7 @@ import com.alesharik.twitch.api.chat.ChatEngine;
 import com.alesharik.twitch.api.chat.impl.ChatEngineImpl;
 import com.alesharik.twitch.api.chat.irc.impl.IRCChannelFactoryImpl;
 import com.alesharik.twitch.api.chat.message.TextMessage;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.net.URI;
@@ -29,6 +30,7 @@ import java.util.concurrent.ForkJoinPool;
 
 public class TwitchTest {
     @Test
+    @Ignore
     public void authTest() throws Exception {
         Twitch twitch = new Twitch("ub00uwkym079kr09g8h8oac426ifns");
         twitch.authorizeClient(new URI("http://127.0.0.1:23522/authorize.html"), 23522, Scope.CHAT);

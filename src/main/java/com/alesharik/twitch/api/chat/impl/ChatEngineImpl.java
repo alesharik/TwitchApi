@@ -25,7 +25,9 @@ import com.alesharik.twitch.api.chat.TwitchChatException;
 import com.alesharik.twitch.api.chat.irc.IRCChannel;
 import com.alesharik.twitch.api.chat.irc.IRCChannelFactory;
 import com.alesharik.twitch.api.chat.message.JoinMessage;
+import com.alesharik.twitch.api.chat.message.ModeMessage;
 import com.alesharik.twitch.api.chat.message.NickMessage;
+import com.alesharik.twitch.api.chat.message.PartMessage;
 import com.alesharik.twitch.api.chat.message.PasswordMessage;
 import com.alesharik.twitch.api.chat.message.TextMessage;
 import com.alesharik.twitch.api.chat.message.UnknownCommandMessage;
@@ -134,6 +136,8 @@ public final class ChatEngineImpl implements ChatEngine {
             ircChannel.registerMessageFactory(new JoinMessage.Factory());
             ircChannel.registerMessageFactory(new TextMessage.Factory());
             ircChannel.registerMessageFactory(new UnknownCommandMessage.Factory());
+            ircChannel.registerMessageFactory(new PartMessage.Factory());
+            ircChannel.registerMessageFactory(new ModeMessage.Factory());
         }
     }
 }

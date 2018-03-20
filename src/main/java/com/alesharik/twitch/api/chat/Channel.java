@@ -18,7 +18,10 @@ package com.alesharik.twitch.api.chat;
 
 import com.alesharik.twitch.api.Twitch;
 import com.alesharik.twitch.api.chat.irc.IRCChannel;
-
+import com.alesharik.twitch.api.chat.message.PartMessage;
+import com.alesharik.twitch.api.chat.message.RequestCapabilityMessage;
+import com.alesharik.twitch.api.chat.message.TextMessage;
+//TODO names
 public interface Channel {
     IRCChannel getIRCChannel();
 
@@ -33,4 +36,19 @@ public interface Channel {
     void connect(String user);
 
     void shutdown();
+
+    default Channel sendTextMessage(String channel, String message) {
+        send(new TextMessage(channel, message));
+        return this;
+    }
+
+    default Channel disconnect(String channel) {
+        send(new PartMessage(channel));
+        return this;
+    }
+
+    default Channel requestCapability(RequestCapabilityMessage.Capability capability) {
+        send(new RequestCapabilityMessage(capability));
+        return this;
+    }
 }

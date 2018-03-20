@@ -28,8 +28,8 @@ public interface ChatEngine {
 
     @Getter
     enum Type {
-        SECURE(443, lookup("irc.chat.twitch.tv")),
-        INSECURE(6667, lookup("irc.chat.twitch.tv"));
+        SECURE(443, lookup()),
+        INSECURE(6667, lookup());
 
         private final int port;
         private final InetAddress host;
@@ -39,9 +39,9 @@ public interface ChatEngine {
             this.host = host;
         }
 
-        private static InetAddress lookup(String s) {
+        private static InetAddress lookup() {
             try {
-                return InetAddress.getByName(s);
+                return InetAddress.getByName("irc.chat.twitch.tv");
             } catch (UnknownHostException e) {
                 throw new Error(e);
             }

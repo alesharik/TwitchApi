@@ -152,7 +152,7 @@ public final class IRCChannelFactoryImpl implements IRCChannelFactory {
         }
 
         private void publishMessage(String msg) {
-            if(msg.equals("PING :tmi.twitch.tv")) {
+            if("PING :tmi.twitch.tv".equals(msg)) {
                 try {
                     socket.getOutputStream().write("PONG :tmi.twitch.tv\n".getBytes(StandardCharsets.UTF_8));
                     socket.getOutputStream().flush();

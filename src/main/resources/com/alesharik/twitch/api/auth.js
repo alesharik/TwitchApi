@@ -14,8 +14,19 @@
  *    limitations under the License.
  */
 
-var thisPage = location.origin + location.pathname;
-var failurePage = location.origin + "/auth-failure.html";
+function extractAccessToken() {
+    var values = {};
+    var hash = document.location.hash;
+    var params = hash.slice(1).split("&");
+    for (var i = 0; i < params.length; i++) {
+        var param = params[i].split("=");
+        if (param[0] === "access_token")
+            values.access_token = param[1];
+        else if (param[0] === "scope")
+            values.scope = param[1];
+    }
+    return values;
+}
 
 function parseToken() {
     var values = extractAccessToken();
@@ -25,18 +36,7 @@ function parseToken() {
         document.location.replace(failurePage + "?error=access_denied&error_description=no_access_token_found");
 }
 
-function extractAccessToken() {
-    var values = {};
-    var hash = document.location.hash;
-    var params = hash.slice(1).split('&');
-    for (var i = 0; i < params.length; i++) {
-        var param = params[i].split('=');
-        if (param[0] === "access_token")
-            values.access_token = param[1];
-        else if (param[0] === "scope")
-            values.scope = param[1];
-    }
-    return values;
-}
+var thisPage = location.origin + location.pathname;
+var failurePage = location.origin + "/auth-failure.html";
 
 window.addEventListener("load", parseToken);

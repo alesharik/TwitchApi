@@ -47,8 +47,6 @@ import java.io.IOException;
 import java.util.List;
 
 public final class HelixAsync implements Helix {
-    private final OkHttpClient client;
-
     private final ClipsImpl clips;
     private final GamesImpl games;
     private final StreamsImpl streams;
@@ -56,7 +54,6 @@ public final class HelixAsync implements Helix {
     private final VideosImpl videos;
 
     public HelixAsync(OkHttpClient client, Auth auth) {
-        this.client = client;
         this.clips = new ClipsImpl(client, auth);
         this.games = new GamesImpl(client, auth);
         this.streams = new StreamsImpl(client, auth);
